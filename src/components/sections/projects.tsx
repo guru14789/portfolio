@@ -14,34 +14,34 @@ const ProjectsSection = () => {
       image: "/assets/projects-screenshots/myportfolio/landing.png"
     },
     {
-      title: "Food Brand Identity",
-      description: "Complete brand identity design for Chilly Chicken restaurant",
-      tech: ["Adobe Illustrator", "Photoshop", "Brand Design"],
-      image: "/assets/projects-screenshots/myportfolio/projects.png"
-    },
-    {
-      title: "Cinematic Poster Design",
-      description: "1999 movie poster with atmospheric lighting and typography",
-      tech: ["Photoshop", "Cinema 4D", "After Effects"],
-      image: "/assets/projects-screenshots/myportfolio/project.png"
-    },
-    {
-      title: "Product Advertisement",
-      description: "Premium mountain bike advertisement with dynamic composition",
-      tech: ["Photoshop", "3D Modeling", "Product Design"],
-      image: "/assets/projects-screenshots/financeme/1.png"
-    },
-    {
-      title: "Beverage Branding",
-      description: "Berry smoothie packaging design with organic aesthetic",
-      tech: ["Illustrator", "Photoshop", "Package Design"],
+      title: "Smart Job Tracker",
+      description: "AI-powered job tracking and management platform",
+      tech: ["React", "Node.js", "PostgreSQL", "AI"],
       image: "/assets/projects-screenshots/smartjobtracker/01.png"
     },
     {
-      title: "Smart Finance Tracker",
-      description: "AI-powered personal finance management platform",
-      tech: ["React", "Node.js", "PostgreSQL", "Chart.js"],
-      image: "/assets/projects-screenshots/financeme/2.png"
+      title: "Finance Management App",
+      description: "Personal finance tracking with smart analytics",
+      tech: ["React", "Chart.js", "Node.js", "MongoDB"],
+      image: "/assets/projects-screenshots/financeme/1.png"
+    },
+    {
+      title: "Smart Parking Assistant",
+      description: "IoT-based smart parking solution with real-time monitoring",
+      tech: ["IoT", "React", "Node.js", "Hardware"],
+      image: "/assets/projects-screenshots/smartparkingassitant/01.jpeg"
+    },
+    {
+      title: "AI Dockerfile Optimizer",
+      description: "AI-powered tool to optimize Docker configurations",
+      tech: ["Python", "AI/ML", "Docker", "FastAPI"],
+      image: "/assets/projects-screenshots/aidockerfileoptimizer/1.png"
+    },
+    {
+      title: "Portfolio Website",
+      description: "Professional portfolio with modern design and animations",
+      tech: ["Next.js", "TypeScript", "Tailwind", "Framer Motion"],
+      image: "/assets/projects-screenshots/savinderpuriportfolio/01.png"
     }
   ];
 
@@ -118,10 +118,21 @@ const ProjectsSection = () => {
             {[...projects, ...projects].map((project, index) => (
               <div
                 key={`${project.title}-${index}`}
-                className="flex-shrink-0 w-80 glass-card rounded-2xl overflow-hidden hover:scale-105 transition-all duration-500 group cursor-pointer"
+                className="flex-shrink-0 w-80 glass-card rounded-2xl overflow-hidden hover:scale-105 transition-all duration-300 group cursor-pointer"
               >
-                <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10"></div>
+                <div className="aspect-video bg-gray-900 relative overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    loading="lazy"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      target.parentElement!.style.background = 'linear-gradient(135deg, #1f2937, #374151)';
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
                   <div className="absolute bottom-4 left-4 z-20">
                     <h3 className="text-xl font-semibold text-white mb-1">{project.title}</h3>
                   </div>

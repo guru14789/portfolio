@@ -71,33 +71,34 @@ export default function SkillsSection() {
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      {/* Black background with subtle gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-zinc-900 to-black" />
+      {/* Solid black background */}
+      <div className="absolute inset-0 bg-black" />
       
-      {/* Optimized particles background - reduced count */}
+      {/* Minimal particles background for better performance */}
       <motion.div
-        className="absolute inset-0 opacity-10"
+        className="absolute inset-0 opacity-5"
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 0.1 }}
+        whileInView={{ opacity: 0.05 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
       >
-        {Array.from({ length: 20 }, (_, i) => (
+        {Array.from({ length: 8 }, (_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-white rounded-full"
+            className="absolute w-0.5 h-0.5 bg-white rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
             }}
             animate={{
-              y: [0, -15, 0],
-              opacity: [0.2, 0.8, 0.2],
+              y: [0, -10, 0],
+              opacity: [0.1, 0.3, 0.1],
             }}
             transition={{
-              duration: 4 + Math.random() * 2,
+              duration: 6,
               repeat: Infinity,
-              delay: Math.random() * 2,
+              delay: i * 0.5,
+              ease: "linear",
             }}
           />
         ))}
@@ -155,11 +156,11 @@ export default function SkillsSection() {
             viewport={{ once: true, margin: "-100px" }}
             className="space-y-8"
           >
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4">
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
               {/* Convert SKILLS object to array, show main skills only */}
-              {Object.values(SKILLS).slice(0, 12).map((skill, index) => {
-                // Higher performance metrics with deterministic values
-                const progress = 80 + (index * 5) % 15;
+              {Object.values(SKILLS).slice(0, 9).map((skill, index) => {
+                // Simplified progress calculation for better performance
+                const progress = 85 + (index * 3) % 10;
                 
                 return (
                   <motion.div
@@ -174,16 +175,15 @@ export default function SkillsSection() {
                     }}
                     viewport={{ once: true }}
                     whileHover={{ 
-                      scale: 1.1, 
-                      y: -5,
+                      scale: 1.05, 
+                      y: -2,
                     }}
                     className="group relative"
                   >
                     <motion.div 
                       className="bg-zinc-900/80 backdrop-blur-sm rounded-lg p-3 transition-all duration-300 group-hover:shadow-xl border border-zinc-700/50 hover:border-zinc-600"
                       whileHover={{
-                        boxShadow: `0 10px 30px ${skill.color}30`,
-                        backgroundColor: 'rgba(39, 39, 42, 0.9)',
+                        backgroundColor: 'rgba(39, 39, 42, 0.95)',
                       }}
                     >
                       <div className="flex flex-col items-center space-y-2">
@@ -217,29 +217,17 @@ export default function SkillsSection() {
                         {/* Progress Bar */}
                         <div className="w-full bg-zinc-800 rounded-full h-1.5 overflow-hidden">
                           <motion.div
-                            initial={{ width: 0, opacity: 0 }}
-                            whileInView={{ width: `${progress}%`, opacity: 1 }}
+                            initial={{ width: 0 }}
+                            whileInView={{ width: `${progress}%` }}
                             transition={{ 
-                              duration: 1.2, 
-                              delay: index * 0.1 + 0.5,
+                              duration: 0.8, 
+                              delay: index * 0.05 + 0.3,
                               ease: "easeOut"
                             }}
                             viewport={{ once: true }}
-                            className="h-full rounded-full relative overflow-hidden"
+                            className="h-full rounded-full"
                             style={{ backgroundColor: skill.color }}
-                          >
-                            <motion.div
-                              className="absolute inset-0 bg-white/30 rounded-full"
-                              animate={{ x: [-100, 100] }}
-                              transition={{
-                                duration: 1.5,
-                                repeat: Infinity,
-                                repeatType: "loop",
-                                ease: "linear",
-                              }}
-                              style={{ width: "50%" }}
-                            />
-                          </motion.div>
+                          />
                         </div>
                         
                         {/* Progress Percentage */}
@@ -323,6 +311,8 @@ export default function SkillsSection() {
                         pointerEvents: "none",
                         userSelect: "none",
                         touchAction: "none",
+                        transform: "scale(1)",
+                        willChange: "auto",
                       }}
                     />
                   </div>
