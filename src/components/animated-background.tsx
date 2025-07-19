@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import Spline from '@splinetool/react-spline/next';
 import { Application } from '@splinetool/runtime';
 
@@ -21,26 +21,23 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
     if (splineApp.canvas) {
       splineApp.canvas.style.background = 'transparent';
       splineApp.canvas.style.backgroundColor = 'transparent';
-      // Remove any background color from the renderer
-      if (splineApp.renderer) {
-        splineApp.renderer.setClearColor(0x000000, 0);
-        splineApp.renderer.setClearAlpha(0);
-      }
     }
 
-    // Find and auto-rotate the main object
+    // Optional: Auto-rotate the main object
     const mainObject = splineApp.findObjectByName('Scene') || splineApp.scene?.children[0];
     if (mainObject) {
-      // Start continuous rotation
       const startTime = Date.now();
       const animate = () => {
         const elapsed = (Date.now() - startTime) / 1000;
-        mainObject.rotation.y = elapsed * 0.5; // Adjust rotation speed as needed
+        mainObject.rotation.y = elapsed * 0.5; // Adjust speed as needed
         requestAnimationFrame(animate);
       };
       animate();
     }
   };
+
+  // Temporary cn function if you're not using tailwind-merge or clsx
+  const cn = (...classes: string[]) => classes.filter(Boolean).join(" ");
 
   return (
     <div 
