@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { cn } from "@/lib/utils";
 import { BoxReveal } from "../reveal-animations";
@@ -24,10 +25,22 @@ const HeroSection = () => {
 
           <BoxReveal width="100%" delay={0.4}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="glass hover:glass-dark px-8 py-4 rounded-full border border-white/20 hover:border-white/40 transition-all duration-300 text-white font-medium">
+              <button 
+                onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
+                className="glass hover:glass-dark px-8 py-4 rounded-full border border-white/20 hover:border-white/40 transition-all duration-300 text-white font-medium"
+              >
                 View My Work
               </button>
-              <button className="bg-white/10 hover:bg-white/20 px-8 py-4 rounded-full border border-white/30 hover:border-white/50 transition-all duration-300 text-white font-medium backdrop-blur-sm">
+              <button 
+                onClick={() => window.open('/resume.pdf', '_blank')}
+                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 px-8 py-4 rounded-full border border-blue-300/30 hover:border-blue-300/50 transition-all duration-300 text-white font-medium backdrop-blur-sm"
+              >
+                Download Resume
+              </button>
+              <button 
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                className="bg-white/10 hover:bg-white/20 px-8 py-4 rounded-full border border-white/30 hover:border-white/50 transition-all duration-300 text-white font-medium backdrop-blur-sm"
+              >
                 Get In Touch
               </button>
             </div>

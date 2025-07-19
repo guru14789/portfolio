@@ -1,75 +1,56 @@
-
 import React from "react";
 import { cn } from "@/lib/utils";
-import { BoxReveal } from "../reveal-animations";
+import ContactForm from "../ContactForm";
 
 const ContactSection = () => {
   return (
-    <section id="contact" className="min-h-screen py-20 px-4 relative flex items-center">
+    <section className="min-h-screen flex items-center justify-center px-4 py-20 bg-background" id="contact">
       <div className="container mx-auto max-w-4xl">
-        <div className="glass-card rounded-3xl p-12 liquid-gradient">
-          <BoxReveal width="100%">
-            <h2 className={cn(
-              "text-5xl md:text-7xl font-bold text-center mb-6",
-              "bg-gradient-to-b from-white via-gray-200 to-gray-400 bg-clip-text text-transparent"
-            )}>
-              LET'S CONNECT
-            </h2>
-          </BoxReveal>
-          
-          <BoxReveal width="100%" delay={0.2}>
-            <p className="text-xl text-gray-300 text-center mb-12 leading-relaxed">
-              Ready to bring your ideas to life? Let's create something amazing together.
-            </p>
-          </BoxReveal>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="space-y-6">
-              <BoxReveal width="100%" delay={0.3}>
-                <div className="glass rounded-xl p-6 border border-white/10">
-                  <h3 className="text-lg font-semibold text-white mb-2">Email</h3>
-                  <p className="text-gray-300">hello@example.com</p>
+        <div className="text-center mb-12">
+          <h2 className={cn(
+            "text-4xl md:text-6xl font-bold mb-6",
+            "bg-gradient-to-b from-foreground via-foreground/90 to-foreground/70 bg-clip-text text-transparent dark:from-white dark:via-gray-100 dark:to-gray-300"
+          )}>
+            Let&apos;s Connect
+          </h2>
+          <p className="text-xl text-muted-foreground dark:text-gray-300">
+            Ready to bring your ideas to life? Let&apos;s collaborate!
+          </p>
+        </div>
+
+        <div className="glass-card rounded-3xl p-8 md:p-12 bg-card/50 backdrop-blur-sm border border-border">
+          <ContactForm />
+
+          {/* Location Map */}
+          <div className="mt-8 p-6 rounded-2xl bg-muted/20 border border-border">
+            <h3 className="text-2xl font-bold mb-4 text-foreground">Find Me</h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="space-y-3">
+                <div>
+                  <h4 className="font-semibold text-foreground">Location</h4>
+                  <p className="text-muted-foreground">Pune, Maharashtra, India</p>
                 </div>
-              </BoxReveal>
-              
-              <BoxReveal width="100%" delay={0.4}>
-                <div className="glass rounded-xl p-6 border border-white/10">
-                  <h3 className="text-lg font-semibold text-white mb-2">Location</h3>
-                  <p className="text-gray-300">Available Worldwide</p>
+                <div>
+                  <h4 className="font-semibold text-foreground">Email</h4>
+                  <p className="text-muted-foreground">abhijitzende2411@gmail.com</p>
                 </div>
-              </BoxReveal>
-            </div>
-            
-            <div className="space-y-4">
-              <BoxReveal width="100%" delay={0.5}>
-                <input
-                  type="text"
-                  placeholder="Your Name"
-                  className="w-full glass rounded-lg p-4 border border-white/20 bg-transparent text-white placeholder-gray-400 focus:border-white/40 focus:outline-none transition-all"
-                />
-              </BoxReveal>
-              
-              <BoxReveal width="100%" delay={0.6}>
-                <input
-                  type="email"
-                  placeholder="Your Email"
-                  className="w-full glass rounded-lg p-4 border border-white/20 bg-transparent text-white placeholder-gray-400 focus:border-white/40 focus:outline-none transition-all"
-                />
-              </BoxReveal>
-              
-              <BoxReveal width="100%" delay={0.7}>
-                <textarea
-                  placeholder="Your Message"
-                  rows={4}
-                  className="w-full glass rounded-lg p-4 border border-white/20 bg-transparent text-white placeholder-gray-400 focus:border-white/40 focus:outline-none transition-all resize-none"
-                />
-              </BoxReveal>
-              
-              <BoxReveal width="100%" delay={0.8}>
-                <button className="w-full bg-white/10 hover:bg-white/20 py-4 px-6 rounded-lg border border-white/30 hover:border-white/50 transition-all duration-300 text-white font-medium backdrop-blur-sm">
-                  Send Message
-                </button>
-              </BoxReveal>
+                <div>
+                  <h4 className="font-semibold text-foreground">Phone</h4>
+                  <p className="text-muted-foreground">+91 9075757847</p>
+                </div>
+              </div>
+              <div className="rounded-lg overflow-hidden h-48 bg-muted/10">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d121059.04711134703!2d73.86295679726562!3d18.52461806952677!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf2e67461101%3A0x828d43bf9d9ee343!2sPune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1647951674567!5m2!1sen!2sin"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen={true}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="grayscale hover:grayscale-0 transition-all duration-300"
+                ></iframe>
+              </div>
             </div>
           </div>
         </div>

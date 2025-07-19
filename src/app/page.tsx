@@ -12,7 +12,7 @@ function MainPage() {
   return (
     <>
       <SmoothScroll>
-        <main className={cn("min-h-screen bg-black relative")}>
+        <main className={cn("min-h-screen bg-background text-foreground relative")}>
           <HeroSection />
           <SkillsSection />
           <ProjectsSection />
