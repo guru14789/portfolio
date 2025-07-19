@@ -44,14 +44,17 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
   };
 
   return (
-    <div className={`w-full h-full ${className}`} style={{ background: 'transparent' }}>
+    <div className={`w-full h-full ${className}`} style={{ background: 'transparent', border: 'none', outline: 'none' }}>
       <Spline 
         scene={scene}
         onLoad={onLoad}
         className="w-full h-full"
         style={{ 
           background: 'transparent',
-          backgroundColor: 'transparent'
+          backgroundColor: 'transparent',
+          border: 'none',
+          outline: 'none',
+          borderRadius: '0px'
         }}
       />
     </div>
