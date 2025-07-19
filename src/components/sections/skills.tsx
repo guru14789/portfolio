@@ -30,8 +30,9 @@ export default function SkillsSection() {
     setIsLoading(false);
     if (error.message.includes("Data read, but end of buffer not reached") || 
         error.message.includes("buffer") || 
-        error.message.includes("runtime")) {
-      setSplineError("3D scene temporarily unavailable. Using fallback display.");
+        error.message.includes("runtime") ||
+        error.message.includes("more recent than the library")) {
+      setSplineError("3D scene version mismatch. Please refresh the page.");
     } else {
       setSplineError("Failed to load 3D model. Please try again later.");
     }
@@ -315,7 +316,7 @@ export default function SkillsSection() {
                 <SplineErrorBoundary>
                   <div className="w-full h-full overflow-hidden">
                     <Spline
-                      scene="https://prod.spline.design/animatedshapeblend-QzgQPqi7qs3KMSJMNCGqbO4o/scene.splinecode"
+                      scene="https://prod.spline.design/QzgQPqi7qs3KMSJMNCGqbO4o/scene.splinecode"
                       onLoad={onLoad}
                       onError={onError}
                       style={{

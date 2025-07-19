@@ -40,8 +40,9 @@ const HeroSection = () => {
     setIsLoading(false);
     if (error.message.includes("Data read, but end of buffer not reached") || 
         error.message.includes("buffer") || 
-        error.message.includes("runtime")) {
-      setSplineError("3D scene temporarily unavailable. Using fallback display.");
+        error.message.includes("runtime") ||
+        error.message.includes("more recent than the library")) {
+      setSplineError("3D scene version mismatch. Please refresh the page.");
     } else {
       setSplineError("Failed to load 3D model. Please try again later.");
     }
