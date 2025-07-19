@@ -73,7 +73,7 @@ export default function SkillsSection() {
     >
       {/* Solid black background */}
       <div className="absolute inset-0 bg-black" />
-
+      
       {/* Minimal particles background for better performance */}
       <motion.div
         className="absolute inset-0 opacity-5"
@@ -155,17 +155,13 @@ export default function SkillsSection() {
             }}
             viewport={{ once: true, margin: "-100px" }}
             className="space-y-8"
-            data-animate="fade-up"
           >
-            <div 
-              className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3"
-              data-animate="stagger"
-            >
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
               {/* Convert SKILLS object to array, show main skills only */}
               {Object.values(SKILLS).slice(0, 9).map((skill, index) => {
                 // Simplified progress calculation for better performance
                 const progress = 85 + (index * 3) % 10;
-
+                
                 return (
                   <motion.div
                     key={skill.name}
@@ -209,7 +205,7 @@ export default function SkillsSection() {
                             transition={{ type: "spring", stiffness: 300 }}
                           />
                         </motion.div>
-
+                        
                         {/* Skill Name */}
                         <motion.h3 
                           className="text-xs font-medium text-white text-center leading-tight"
@@ -217,7 +213,7 @@ export default function SkillsSection() {
                         >
                           {skill.label}
                         </motion.h3>
-
+                        
                         {/* Progress Bar */}
                         <div className="w-full bg-zinc-800 rounded-full h-1.5 overflow-hidden">
                           <motion.div
@@ -233,7 +229,7 @@ export default function SkillsSection() {
                             style={{ backgroundColor: skill.color }}
                           />
                         </div>
-
+                        
                         {/* Progress Percentage */}
                         <motion.span
                           initial={{ opacity: 0, y: 10 }}

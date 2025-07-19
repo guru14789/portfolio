@@ -3,7 +3,7 @@ import { Inter, Archivo_Black } from "next/font/google";
 import "./globals.css";
 import ElasticCursor from "@/components/ui/ElasticCursor";
 import Particles from "@/components/Particles";
-
+import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/header/header";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -67,7 +67,11 @@ export default function RootLayout({
         {/* <Analytics /> */}
       </head>
       <body>
-        <div className="dark">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          disableTransitionOnChange
+        >
           <Particles
             className="fixed inset-0 -z-10 animate-fade-in"
             quantity={100}
@@ -85,7 +89,7 @@ export default function RootLayout({
             <EasterEggs />
             <ElasticCursor />
           </Preloader>
-        </div>
+        </ThemeProvider>
       </body>
     </html>
   );

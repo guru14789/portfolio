@@ -6,6 +6,7 @@ import styles from "./style.module.scss";
 import { opacity, background } from "./anim";
 import Nav from "./nav";
 import { cn } from "@/lib/utils";
+import { FunnyThemeToggle } from "../theme/funny-theme-toggle";
 import { Button } from "../ui/button";
 import { config } from "@/data/config";
 // import OnlineUsers from "../realtime/online-users";
@@ -36,7 +37,6 @@ const Header = ({ loader }: HeaderProps) => {
       transition={{
         delay: loader ? 3.5 : 0, // 3.5 for loading, .5 can be added for delay
         duration: 0.8,
-        ease: "easeInOut",
       }}
     >
       {/* <div
@@ -54,10 +54,15 @@ const Header = ({ loader }: HeaderProps) => {
         </Link>
 
         {/* <OnlineUsers /> */}
+        <FunnyThemeToggle className="w-6 h-6 mr-4" />
         <Button
-              className="ml-2"
-              onClick={() => setIsActive(!isActive)}
-            >
+          variant={"ghost"}
+          onClick={() => setIsActive(!isActive)}
+          className={cn(
+            styles.el,
+            "m-0 p-0 h-6 bg-transparent flex items-center justify-center"
+          )}
+        >
           <div className="relative flex items-center">
             <motion.p
               variants={opacity}
@@ -81,10 +86,6 @@ const Header = ({ loader }: HeaderProps) => {
         initial="initial"
         animate={isActive ? "open" : "closed"}
         className={styles.background}
-        transition={{
-          duration: 0.5,
-          ease: "easeInOut",
-        }}
       ></motion.div>
       <AnimatePresence mode="wait">
         {isActive && <Nav setIsActive={setIsActive} />}
