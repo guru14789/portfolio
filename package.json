@@ -24,6 +24,7 @@
     "@splinetool/runtime": "^1.10.33",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "critters": "^0.0.23",
     "devtools-detector": "^2.0.22",
     "embla-carousel-react": "^8.1.8",
     "framer-motion": "^11.3.17",

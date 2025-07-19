@@ -2,7 +2,6 @@
 const nextConfig = {
   experimental: {
     optimizePackageImports: ["@splinetool/react-spline", "@splinetool/runtime"],
-    optimizeCss: true,
   },
   images: {
     formats: ['image/webp', 'image/avif'],
@@ -14,11 +13,6 @@ const nextConfig = {
   poweredByHeader: false,
   compress: true,
   swcMinify: true,
-  modularizeImports: {
-    'framer-motion': {
-      transform: 'framer-motion/dist/es/{{member}}',
-    },
-  },
 };
 
 export default nextConfig;
