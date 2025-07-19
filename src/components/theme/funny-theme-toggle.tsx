@@ -40,4 +40,3 @@ export function FunnyThemeToggle() {
 }
 
 export default FunnyThemeToggle;
-export { FunnyThemeToggle };
