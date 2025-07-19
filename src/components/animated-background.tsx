@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useRef, useEffect } from "react";
 import Spline from '@splinetool/react-spline/next';
@@ -17,7 +16,7 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
 
   const onLoad = (splineApp: Application) => {
     splineRef.current = splineApp;
-    
+
     // Make canvas background fully transparent
     if (splineApp.canvas) {
       splineApp.canvas.style.background = 'transparent';
@@ -44,7 +43,22 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
   };
 
   return (
-    <div className={`w-full h-full ${className}`} style={{ background: 'transparent', border: 'none', outline: 'none' }}>
+    <div 
+      className={cn(
+        "absolute inset-0 w-full h-full overflow-hidden",
+        "bg-gradient-to-br from-background via-background/90 to-muted/20",
+        "dark:from-zinc-900 dark:via-black dark:to-zinc-900",
+        className
+      )}
+      style={{
+        background: `
+          radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.05) 0%, transparent 50%),
+          radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.05) 0%, transparent 50%),
+          radial-gradient(circle at 40% 80%, rgba(120, 200, 255, 0.05) 0%, transparent 50%),
+          hsl(var(--background))
+        `,
+      }}
+    >
       <Spline 
         scene={scene}
         onLoad={onLoad}

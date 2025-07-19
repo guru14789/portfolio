@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
@@ -52,12 +51,12 @@ const ProjectsSection = () => {
 
     const animate = () => {
       scrollPosition += scrollSpeed;
-      
+
       // Reset position when we've scrolled past all cards
       if (scrollPosition >= totalWidth) {
         scrollPosition = 0;
       }
-      
+
       scrollContainer.scrollLeft = scrollPosition;
       animationId = requestAnimationFrame(animate);
     };
@@ -88,7 +87,7 @@ const ProjectsSection = () => {
   }, [projects.length]);
 
   return (
-    <section id="projects" className="min-h-screen py-20 px-4 relative">
+    <section id="projects" className="relative min-h-screen py-20 px-4">
       <div className="container mx-auto max-w-6xl">
         <BoxReveal width="100%">
           <h2 className={cn(
@@ -148,7 +147,7 @@ const ProjectsSection = () => {
               </div>
             ))}
           </div>
-          
+
           {/* Gradient overlays for smooth edges */}
           <div className="absolute top-0 left-0 w-16 h-full bg-gradient-to-r from-black to-transparent z-10 pointer-events-none"></div>
           <div className="absolute top-0 right-0 w-16 h-full bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>

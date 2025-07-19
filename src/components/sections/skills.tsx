@@ -1,160 +1,170 @@
 
-import React from "react";
-import { cn } from "@/lib/utils";
-import { BoxReveal } from "../reveal-animations";
-import AnimatedBackground from "../animated-background";
-import Image from "next/image";
+"use client";
 
-const SkillsSection = () => {
-  const skills = [
-    { 
-      name: "React", 
-      level: 95,
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
-    },
-    { 
-      name: "TypeScript", 
-      level: 90,
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
-    },
-    { 
-      name: "Next.js", 
-      level: 88,
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
-    },
-    { 
-      name: "Node.js", 
-      level: 85,
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
-    },
-    { 
-      name: "Python", 
-      level: 82,
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
-    },
-    { 
-      name: "Three.js", 
-      level: 78,
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg"
-    },
-    { 
-      name: "JavaScript", 
-      level: 92,
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-    },
-    { 
-      name: "HTML5", 
-      level: 95,
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
-    },
-    { 
-      name: "CSS3", 
-      level: 90,
-      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+import { useState, useRef, useEffect, useCallback } from "react";
+import Spline from "@splinetool/react-spline";
+import { Application } from "@splinetool/runtime";
+import { motion } from "framer-motion";
+import { SKILLS } from "@/data/constants";
+
+export default function SkillsSection() {
+  const [isLoading, setIsLoading] = useState(true);
+  const splineRef = useRef<Application | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const onLoad = useCallback((spline: Application) => {
+    splineRef.current = spline;
+    setIsLoading(false);
+  }, []);
+
+  const onError = useCallback(() => {
+    setIsLoading(false);
+  }, []);
+
+  // Optimize Spline performance
+  useEffect(() => {
+    if (splineRef.current) {
+      // Reduce rendering quality for better performance
+      splineRef.current.setQuality(0.7);
+      
+      // Set up proper canvas sizing
+      const canvas = splineRef.current.canvas;
+      if (canvas && containerRef.current) {
+        const resizeCanvas = () => {
+          const container = containerRef.current;
+          if (container && canvas) {
+            const rect = container.getBoundingClientRect();
+            canvas.style.width = '100%';
+            canvas.style.height = '100%';
+            canvas.style.maxWidth = `${rect.width}px`;
+            canvas.style.maxHeight = `${rect.height}px`;
+          }
+        };
+        
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        
+        return () => {
+          window.removeEventListener('resize', resizeCanvas);
+        };
+      }
     }
-  ];
+  }, [splineRef.current]);
 
   return (
-    <section id="skills" className="min-h-screen py-20 px-4 relative">
-      <div className="container mx-auto max-w-6xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left side - Skills content */}
-          <div className="space-y-8">
-            <BoxReveal width="100%">
-              <h2 className={cn(
-                "text-6xl md:text-8xl font-bold mb-8",
-                "bg-gradient-to-b from-white via-gray-200 to-gray-400 bg-clip-text text-transparent"
-              )}>
-                SKILLS
-              </h2>
-            </BoxReveal>
+    <section 
+      id="skills" 
+      className="relative min-h-screen w-full bg-background text-foreground py-20 overflow-hidden"
+    >
+      {/* Background gradient for light/dark mode */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background/90 to-muted/20 dark:from-black dark:via-zinc-900/90 dark:to-zinc-800/20" />
+      
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground via-foreground/80 to-foreground bg-clip-text">
+            Skills & Technologies
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Exploring the intersection of creativity and technology through various tools and frameworks.
+          </p>
+        </motion.div>
 
-            <p className="text-gray-400 text-lg mb-12">
-              Technologies and tools I work with to bring ideas to life
-            </p>
-
-            {/* Skills Grid */}
-            <div className="grid grid-cols-3 gap-6">
-              {skills.map((skill, index) => (
-                <BoxReveal key={skill.name} width="100%" delay={index * 0.05}>
-                  <div className="glass-card rounded-xl p-4 aspect-square flex flex-col items-center justify-center relative group">
-                    {/* Skill Icon */}
-                    <div className="w-12 h-12 mb-3 relative">
-                      <Image
-                        src={skill.icon}
-                        alt={skill.name}
-                        fill
-                        className="object-contain filter brightness-0 invert group-hover:filter-none transition-all duration-300"
-                      />
-                    </div>
-                    
-                    {/* Skill Name */}
-                    <span className="text-white font-medium text-sm text-center mb-2">
-                      {skill.name}
-                    </span>
-                    
-                    {/* Progress Circle */}
-                    <div className="relative w-16 h-16">
-                      <svg className="w-16 h-16 transform -rotate-90" viewBox="0 0 100 100">
-                        {/* Background circle */}
-                        <circle
-                          cx="50"
-                          cy="50"
-                          r="40"
-                          stroke="rgba(255,255,255,0.1)"
-                          strokeWidth="8"
-                          fill="transparent"
-                        />
-                        {/* Progress circle */}
-                        <circle
-                          cx="50"
-                          cy="50"
-                          r="40"
-                          stroke="url(#gradient)"
-                          strokeWidth="8"
-                          fill="transparent"
-                          strokeDasharray={`${2 * Math.PI * 40}`}
-                          strokeDashoffset={`${2 * Math.PI * 40 * (1 - skill.level / 100)}`}
-                          className="transition-all duration-1000 ease-out"
-                          strokeLinecap="round"
-                        />
-                      </svg>
-                      {/* Percentage text */}
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-xs font-bold text-white">
-                          {skill.level}%
-                        </span>
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Skills Grid */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+              {SKILLS.map((skill, index) => (
+                <motion.div
+                  key={skill.name}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ 
+                    duration: 0.5, 
+                    delay: index * 0.1,
+                    type: "spring",
+                    stiffness: 100
+                  }}
+                  viewport={{ once: true }}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  className="group relative"
+                >
+                  <div className="glass-card rounded-xl p-6 transition-all duration-300 group-hover:shadow-lg border border-border/50">
+                    <div className="flex flex-col items-center space-y-3">
+                      {skill.icon && (
+                        <div 
+                          className="w-12 h-12 rounded-lg flex items-center justify-center transition-colors duration-300"
+                          style={{ backgroundColor: `${skill.color}20` }}
+                        >
+                          <img 
+                            src={skill.icon} 
+                            alt={skill.name}
+                            className="w-8 h-8 object-contain"
+                            loading="lazy"
+                          />
+                        </div>
+                      )}
+                      <div className="text-center">
+                        <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                          {skill.name}
+                        </h3>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          {skill.shortDescription?.split('—')[0] || skill.label}
+                        </p>
                       </div>
-                      {/* SVG Gradient Definition */}
-                      <svg className="absolute inset-0 w-0 h-0">
-                        <defs>
-                          <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="#3b82f6" />
-                            <stop offset="100%" stopColor="#8b5cf6" />
-                          </linearGradient>
-                        </defs>
-                      </svg>
                     </div>
                   </div>
-                </BoxReveal>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
-          {/* Right side - 3D Spline object */}
-          <div className="relative h-[600px] w-full">
-            <div className="glass-card rounded-3xl h-full overflow-hidden">
-              <AnimatedBackground scene="https://prod.spline.design/GdbPcxIeMGGb3KHp/scene.splinecode" />
+          {/* Spline 3D Model */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <div 
+              ref={containerRef}
+              className="relative w-full h-[500px] md:h-[600px] rounded-2xl overflow-hidden border border-border/20 bg-gradient-to-br from-muted/10 to-muted/20"
+            >
+              {isLoading && (
+                <div className="absolute inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm z-10">
+                  <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+                    <p className="text-muted-foreground">Loading 3D Experience...</p>
+                  </div>
+                </div>
+              )}
+              
+              <Spline
+                scene="https://prod.spline.design/JKOeP1UuhRrY9JNj/scene.splinecode"
+                onLoad={onLoad}
+                onError={onError}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  background: 'transparent'
+                }}
+              />
             </div>
-          </div>
+          </motion.div>
         </div>
-
-        {/* Floating elements */}
-        <div className="absolute top-32 right-20 w-16 h-16 glass rounded-full opacity-20 animate-pulse"></div>
-        <div className="absolute bottom-40 left-16 w-12 h-12 glass rounded-full opacity-30 animate-pulse delay-700"></div>
       </div>
     </section>
   );
-};
-
-export default SkillsSection;
+}
