@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef } from "react";
-import Spline from '@splinetool/react-spline/next';
-import { Application } from '@splinetool/runtime';
+import Spline from "@splinetool/react-spline/next";
+import { Application } from "@splinetool/runtime";
 
 interface AnimatedBackgroundProps {
   scene?: string;
@@ -19,12 +19,12 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
 
     // Make canvas background transparent
     if (splineApp.canvas) {
-      splineApp.canvas.style.background = 'transparent';
-      splineApp.canvas.style.backgroundColor = 'transparent';
+      splineApp.canvas.style.background = "transparent";
+      splineApp.canvas.style.backgroundColor = "transparent";
     }
 
     // Try finding an object to rotate
-    const mainObject = splineApp.findObjectByName('Scene');
+    const mainObject = splineApp.findObjectByName("Scene");
 
     if (mainObject) {
       const startTime = Date.now();
@@ -40,7 +40,7 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
   const cn = (...classes: string[]) => classes.filter(Boolean).join(" ");
 
   return (
-    <div 
+    <div
       className={cn(
         "absolute inset-0 w-full h-full overflow-hidden",
         "bg-gradient-to-br from-background via-background/90 to-muted/20",
@@ -53,19 +53,19 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
           radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.05) 0%, transparent 50%),
           radial-gradient(circle at 40% 80%, rgba(120, 200, 255, 0.05) 0%, transparent 50%),
           hsl(var(--background))
-        `,
+        `
       }}
     >
-      <Spline 
+      <Spline
         scene={scene}
         onLoad={onLoad}
         className="w-full h-full"
-        style={{ 
-          background: 'transparent',
-          backgroundColor: 'transparent',
-          border: 'none',
-          outline: 'none',
-          borderRadius: '0px'
+        style={{
+          background: "transparent",
+          backgroundColor: "transparent",
+          border: "none",
+          outline: "none",
+          borderRadius: "0px"
         }}
       />
     </div>
