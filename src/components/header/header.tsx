@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 import FunnyThemeToggle from "../theme/funny-theme-toggle";
 import { Button } from "../ui/button";
 import { config } from "@/data/config";
-import OnlineUsers from "../realtime/online-users";
+// import OnlineUsers from "../realtime/online-users";
 
 interface HeaderProps {
   loader?: boolean;
@@ -53,7 +53,7 @@ const Header = ({ loader }: HeaderProps) => {
           </Button>
         </Link>
 
-        <OnlineUsers />
+        {/* <OnlineUsers /> */}
         <FunnyThemeToggle className="w-6 h-6 mr-4" />
         <Button
           variant={"ghost"}
