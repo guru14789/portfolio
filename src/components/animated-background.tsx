@@ -1,3 +1,4 @@
+
 "use client";
 import React from "react";
 import Spline from '@splinetool/react-spline/next';
@@ -8,7 +9,7 @@ interface AnimatedBackgroundProps {
 }
 
 const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
-  scene = "https://prod.spline.design/RC9fNHvpZ3n0J05p/scene.splinecode",
+  scene = "https://prod.spline.design/GdbPcxIeMGGb3KHp/scene.splinecode",
   className = ""
 }) => {
   return (
