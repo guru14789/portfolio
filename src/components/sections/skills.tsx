@@ -96,57 +96,74 @@ export default function SkillsSection() {
             viewport={{ once: true }}
             className="space-y-8"
           >
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-              {/* Safely handle SKILLS.map */}
-              {Array.isArray(SKILLS) ? (
-                SKILLS.map((skill, index) => (
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4">
+              {/* Convert SKILLS object to array and render */}
+              {Object.values(SKILLS).map((skill, index) => {
+                // Generate a random progress value between 70-95%
+                const progress = 70 + Math.floor(Math.random() * 26);
+                
+                return (
                   <motion.div
                     key={skill.name}
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{
                       duration: 0.5,
-                      delay: index * 0.1,
+                      delay: index * 0.05,
                       type: "spring",
                       stiffness: 100,
                     }}
                     viewport={{ once: true }}
-                    whileHover={{ scale: 1.05, y: -5 }}
+                    whileHover={{ scale: 1.1, y: -3 }}
                     className="group relative"
                   >
-                    <div className="glass-card rounded-xl p-6 transition-all duration-300 group-hover:shadow-lg border border-border/50">
-                      <div className="flex flex-col items-center space-y-3">
-                        {skill.icon && (
-                          <div
-                            className="w-12 h-12 rounded-lg flex items-center justify-center transition-colors duration-300"
-                            style={{ backgroundColor: `${skill.color}20` }}
-                          >
-                            <img
-                              src={skill.icon}
-                              alt={skill.name}
-                              className="w-8 h-8 object-contain"
-                              loading="lazy"
-                            />
-                          </div>
-                        )}
-                        <div className="text-center">
-                          <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
-                            {skill.name}
-                          </h3>
-                          <p className="text-xs text-muted-foreground mt-1">
-                            {skill.shortDescription?.split("—")[0] ||
-                              skill.label}
-                          </p>
+                    <div className="glass-card rounded-lg p-3 transition-all duration-300 group-hover:shadow-lg border border-border/50 bg-background/50">
+                      <div className="flex flex-col items-center space-y-2">
+                        {/* Square Icon Container */}
+                        <div
+                          className="w-12 h-12 rounded-md flex items-center justify-center transition-all duration-300 group-hover:scale-110"
+                          style={{ backgroundColor: `${skill.color}15` }}
+                        >
+                          <img
+                            src={skill.icon}
+                            alt={skill.name}
+                            className="w-7 h-7 object-contain transition-transform duration-300 group-hover:scale-110"
+                            loading="lazy"
+                          />
                         </div>
+                        
+                        {/* Skill Name */}
+                        <h3 className="text-xs font-medium text-foreground text-center leading-tight">
+                          {skill.label}
+                        </h3>
+                        
+                        {/* Progress Bar */}
+                        <div className="w-full bg-muted/30 rounded-full h-1.5 overflow-hidden">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            whileInView={{ width: `${progress}%` }}
+                            transition={{ duration: 1, delay: index * 0.05 + 0.3 }}
+                            viewport={{ once: true }}
+                            className="h-full rounded-full transition-all duration-300"
+                            style={{ backgroundColor: skill.color }}
+                          />
+                        </div>
+                        
+                        {/* Progress Percentage */}
+                        <motion.span
+                          initial={{ opacity: 0 }}
+                          whileInView={{ opacity: 1 }}
+                          transition={{ duration: 0.5, delay: index * 0.05 + 0.8 }}
+                          viewport={{ once: true }}
+                          className="text-[10px] text-muted-foreground font-mono"
+                        >
+                          {progress}%
+                        </motion.span>
                       </div>
                     </div>
                   </motion.div>
-                ))
-              ) : (
-                <p className="text-muted-foreground">
-                  No skills available to display.
-                </p>
-              )}
+                );
+              })}
             </div>
           </motion.div>
 
@@ -195,7 +212,7 @@ export default function SkillsSection() {
                 <SplineErrorBoundary>
                   <div className="w-full h-full">
                     <Spline
-                      scene="https://prod.spline.design/23BBxbf0AuKmak-L/scene.splinecode"
+                      scene="https://prod.spline.design/Sw6l5z6fQe8bznQC/scene.splinecode"
                       onLoad={onLoad}
                       onError={onError}
                       style={{
