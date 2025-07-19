@@ -65,43 +65,37 @@ export default function SkillsSection() {
   return (
     <motion.section
       id="skills"
-      className="relative min-h-screen w-full bg-background text-foreground py-20 overflow-hidden"
+      className="relative min-h-screen w-full bg-black text-white py-20 overflow-hidden"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
-      {/* Enhanced Background with animated gradient */}
-      <motion.div 
-        className="absolute inset-0 bg-gradient-to-br from-background via-background/90 to-muted/20 dark:from-black dark:via-zinc-900/90 dark:to-zinc-800/20"
-        initial={{ scale: 1.1, opacity: 0 }}
-        whileInView={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1.5 }}
-        viewport={{ once: true }}
-      />
+      {/* Black background with subtle gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-zinc-900 to-black" />
       
-      {/* Animated particles background */}
+      {/* Optimized particles background - reduced count */}
       <motion.div
-        className="absolute inset-0 opacity-20"
+        className="absolute inset-0 opacity-10"
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 0.2 }}
-        transition={{ duration: 2 }}
+        whileInView={{ opacity: 0.1 }}
+        transition={{ duration: 1 }}
         viewport={{ once: true }}
       >
-        {Array.from({ length: 50 }, (_, i) => (
+        {Array.from({ length: 20 }, (_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-primary rounded-full"
+            className="absolute w-1 h-1 bg-white rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
             }}
             animate={{
-              y: [0, -20, 0],
-              opacity: [0.3, 1, 0.3],
+              y: [0, -15, 0],
+              opacity: [0.2, 0.8, 0.2],
             }}
             transition={{
-              duration: 3 + Math.random() * 2,
+              duration: 4 + Math.random() * 2,
               repeat: Infinity,
               delay: Math.random() * 2,
             }}
@@ -123,7 +117,7 @@ export default function SkillsSection() {
           className="text-center mb-16"
         >
           <motion.h2 
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground via-primary to-foreground bg-clip-text"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-gray-300 to-white bg-clip-text text-transparent"
             initial={{ backgroundPosition: "0% 50%" }}
             animate={{ backgroundPosition: "100% 50%" }}
             transition={{
@@ -136,7 +130,7 @@ export default function SkillsSection() {
             Skills & Technologies
           </motion.h2>
           <motion.p 
-            className="text-xl text-muted-foreground max-w-3xl mx-auto"
+            className="text-xl text-gray-400 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -161,38 +155,35 @@ export default function SkillsSection() {
             viewport={{ once: true, margin: "-100px" }}
             className="space-y-8"
           >
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4">
-              {/* Convert SKILLS object to array, filter to show main skills only */}
-              {Object.values(SKILLS).slice(0, 15).map((skill, index) => {
-                // Use deterministic progress based on skill index to avoid hydration mismatch
-                const progress = 75 + (index * 3) % 20;
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4">
+              {/* Convert SKILLS object to array, show main skills only */}
+              {Object.values(SKILLS).slice(0, 12).map((skill, index) => {
+                // Higher performance metrics with deterministic values
+                const progress = 80 + (index * 5) % 15;
                 
                 return (
                   <motion.div
                     key={skill.name}
-                    initial={{ opacity: 0, scale: 0.5, rotateY: -180 }}
-                    whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
                     transition={{
-                      duration: 0.6,
-                      delay: index * 0.1,
+                      duration: 0.4,
+                      delay: index * 0.05,
                       type: "spring",
-                      stiffness: 120,
-                      damping: 10,
+                      stiffness: 100,
                     }}
-                    viewport={{ once: true, margin: "-50px" }}
+                    viewport={{ once: true }}
                     whileHover={{ 
-                      scale: 1.15, 
-                      y: -8,
-                      rotateX: 5,
-                      rotateY: 5,
+                      scale: 1.1, 
+                      y: -5,
                     }}
                     className="group relative"
                   >
                     <motion.div 
-                      className="glass-card rounded-lg p-3 transition-all duration-500 group-hover:shadow-xl border border-border/50 bg-background/50 backdrop-blur-sm"
+                      className="bg-zinc-900/80 backdrop-blur-sm rounded-lg p-3 transition-all duration-300 group-hover:shadow-xl border border-zinc-700/50 hover:border-zinc-600"
                       whileHover={{
-                        boxShadow: `0 20px 40px ${skill.color}20`,
-                        borderColor: skill.color,
+                        boxShadow: `0 10px 30px ${skill.color}30`,
+                        backgroundColor: 'rgba(39, 39, 42, 0.9)',
                       }}
                     >
                       <div className="flex flex-col items-center space-y-2">
@@ -217,14 +208,14 @@ export default function SkillsSection() {
                         
                         {/* Skill Name */}
                         <motion.h3 
-                          className="text-xs font-medium text-foreground text-center leading-tight"
+                          className="text-xs font-medium text-white text-center leading-tight"
                           whileHover={{ scale: 1.05 }}
                         >
                           {skill.label}
                         </motion.h3>
                         
                         {/* Progress Bar */}
-                        <div className="w-full bg-muted/30 rounded-full h-1.5 overflow-hidden">
+                        <div className="w-full bg-zinc-800 rounded-full h-1.5 overflow-hidden">
                           <motion.div
                             initial={{ width: 0, opacity: 0 }}
                             whileInView={{ width: `${progress}%`, opacity: 1 }}
@@ -260,7 +251,7 @@ export default function SkillsSection() {
                             delay: index * 0.1 + 1.2 
                           }}
                           viewport={{ once: true }}
-                          className="text-[10px] text-muted-foreground font-mono"
+                          className="text-[10px] text-zinc-400 font-mono"
                         >
                           {progress}%
                         </motion.span>
@@ -329,7 +320,9 @@ export default function SkillsSection() {
                         width: "100%",
                         height: "100%",
                         background: "transparent",
-                        pointerEvents: "none", // Disable all interactions including zoom
+                        pointerEvents: "none",
+                        userSelect: "none",
+                        touchAction: "none",
                       }}
                     />
                   </div>

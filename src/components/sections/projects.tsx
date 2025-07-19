@@ -8,34 +8,40 @@ const ProjectsSection = () => {
 
   const projects = [
     {
-      title: "3D Portfolio",
-      description: "Interactive portfolio with Spline 3D objects and glassmorphism design",
-      tech: ["Next.js", "Spline", "Three.js", "GSAP"],
+      title: "3D Interactive Portfolio",
+      description: "Advanced portfolio with Spline 3D animations and glassmorphism UI",
+      tech: ["Next.js", "Spline", "Framer Motion", "TypeScript"],
       image: "/assets/projects-screenshots/myportfolio/landing.png"
     },
     {
-      title: "AI Assistant",
-      description: "Intelligent chatbot with natural language processing capabilities",
-      tech: ["React", "OpenAI", "Node.js", "Socket.io"],
+      title: "Food Brand Identity",
+      description: "Complete brand identity design for Chilly Chicken restaurant",
+      tech: ["Adobe Illustrator", "Photoshop", "Brand Design"],
       image: "/assets/projects-screenshots/myportfolio/projects.png"
     },
     {
-      title: "E-commerce Platform",
-      description: "Full-stack shopping platform with payment integration",
-      tech: ["TypeScript", "PostgreSQL", "Stripe", "Tailwind"],
+      title: "Cinematic Poster Design",
+      description: "1999 movie poster with atmospheric lighting and typography",
+      tech: ["Photoshop", "Cinema 4D", "After Effects"],
       image: "/assets/projects-screenshots/myportfolio/project.png"
     },
     {
-      title: "Finance Tracker",
-      description: "Personal finance management with data visualization",
-      tech: ["React", "D3.js", "Express", "MongoDB"],
+      title: "Product Advertisement",
+      description: "Premium mountain bike advertisement with dynamic composition",
+      tech: ["Photoshop", "3D Modeling", "Product Design"],
       image: "/assets/projects-screenshots/financeme/1.png"
     },
     {
-      title: "Smart Job Tracker",
-      description: "AI-powered job application tracking system",
-      tech: ["Vue.js", "Python", "FastAPI", "PostgreSQL"],
+      title: "Beverage Branding",
+      description: "Berry smoothie packaging design with organic aesthetic",
+      tech: ["Illustrator", "Photoshop", "Package Design"],
       image: "/assets/projects-screenshots/smartjobtracker/01.png"
+    },
+    {
+      title: "Smart Finance Tracker",
+      description: "AI-powered personal finance management platform",
+      tech: ["React", "Node.js", "PostgreSQL", "Chart.js"],
+      image: "/assets/projects-screenshots/financeme/2.png"
     }
   ];
 
