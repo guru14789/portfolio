@@ -27,9 +27,6 @@ export default function SkillsSection() {
   // Optimize Spline performance
   useEffect(() => {
     if (splineRef.current) {
-      // Reduce rendering quality for better performance
-      splineRef.current.setQuality(0.7);
-
       // Set up proper canvas sizing
       const canvas = splineRef.current.canvas;
       if (canvas && containerRef.current) {
