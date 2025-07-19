@@ -11,6 +11,18 @@ const HeroSection = () => {
   const [splineError, setSplineError] = useState<string | null>(null);
   const splineRef = useRef<Application | null>(null);
 
+  // Add timeout for loading
+  React.useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (isLoading) {
+        setIsLoading(false);
+        setSplineError("3D scene took too long to load. Using fallback display.");
+      }
+    }, 8000); // 8 second timeout for hero
+
+    return () => clearTimeout(timeout);
+  }, [isLoading]);
+
   const onLoad = useCallback((spline: Application) => {
     try {
       splineRef.current = spline;
@@ -26,7 +38,13 @@ const HeroSection = () => {
   const onError = useCallback((error: Error) => {
     console.error("Spline Error:", error);
     setIsLoading(false);
-    setSplineError("Failed to load 3D model. Please try again later.");
+    if (error.message.includes("Data read, but end of buffer not reached") || 
+        error.message.includes("buffer") || 
+        error.message.includes("runtime")) {
+      setSplineError("3D scene temporarily unavailable. Using fallback display.");
+    } else {
+      setSplineError("Failed to load 3D model. Please try again later.");
+    }
   }, []);
 
   return (

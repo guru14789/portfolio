@@ -28,12 +28,26 @@ export default function SkillsSection() {
   const onError = useCallback((error: Error) => {
     console.error("Spline Error:", error);
     setIsLoading(false);
-    if (error.message.includes("Data read, but end of buffer not reached")) {
-      setSplineError("3D model data is corrupted or incomplete. Displaying fallback view.");
+    if (error.message.includes("Data read, but end of buffer not reached") || 
+        error.message.includes("buffer") || 
+        error.message.includes("runtime")) {
+      setSplineError("3D scene temporarily unavailable. Using fallback display.");
     } else {
       setSplineError("Failed to load 3D model. Please try again later.");
     }
   }, []);
+
+  // Add timeout for loading
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (isLoading) {
+        setIsLoading(false);
+        setSplineError("3D scene took too long to load. Using fallback display.");
+      }
+    }, 10000); // 10 second timeout
+
+    return () => clearTimeout(timeout);
+  }, [isLoading]);
 
   // Optimize Spline performance
   useEffect(() => {
@@ -301,7 +315,7 @@ export default function SkillsSection() {
                 <SplineErrorBoundary>
                   <div className="w-full h-full overflow-hidden">
                     <Spline
-                      scene="https://my.spline.design/animatedshapeblend-QzgQPqi7qs3KMSJMNCGqbO4o/"
+                      scene="https://prod.spline.design/animatedshapeblend-QzgQPqi7qs3KMSJMNCGqbO4o/scene.splinecode"
                       onLoad={onLoad}
                       onError={onError}
                       style={{
