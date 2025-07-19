@@ -18,9 +18,15 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
   const onLoad = (splineApp: Application) => {
     splineRef.current = splineApp;
     
-    // Make canvas background transparent
+    // Make canvas background fully transparent
     if (splineApp.canvas) {
       splineApp.canvas.style.background = 'transparent';
+      splineApp.canvas.style.backgroundColor = 'transparent';
+      // Remove any background color from the renderer
+      if (splineApp.renderer) {
+        splineApp.renderer.setClearColor(0x000000, 0);
+        splineApp.renderer.setClearAlpha(0);
+      }
     }
 
     // Find and auto-rotate the main object
@@ -38,12 +44,15 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
   };
 
   return (
-    <div className={`w-full h-full ${className}`}>
+    <div className={`w-full h-full ${className}`} style={{ background: 'transparent' }}>
       <Spline 
         scene={scene}
         onLoad={onLoad}
         className="w-full h-full"
-        style={{ background: 'transparent' }}
+        style={{ 
+          background: 'transparent',
+          backgroundColor: 'transparent'
+        }}
       />
     </div>
   );
