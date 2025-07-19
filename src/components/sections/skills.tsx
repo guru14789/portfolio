@@ -5,6 +5,7 @@ import Spline from "@splinetool/react-spline";
 import { Application } from "@splinetool/runtime";
 import { motion } from "framer-motion";
 import { SKILLS } from "@/data/constants";
+import { SplineErrorBoundary } from "@/components/spline-error-boundary";
 
 export default function SkillsSection() {
   const [isLoading, setIsLoading] = useState(true);
@@ -13,15 +14,25 @@ export default function SkillsSection() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const onLoad = useCallback((spline: Application) => {
-    splineRef.current = spline;
-    setIsLoading(false);
-    setSplineError(null);
+    try {
+      splineRef.current = spline;
+      setIsLoading(false);
+      setSplineError(null);
+    } catch (error) {
+      console.error("Spline Load Error:", error);
+      setIsLoading(false);
+      setSplineError("Failed to initialize 3D model.");
+    }
   }, []);
 
   const onError = useCallback((error: Error) => {
     console.error("Spline Error:", error);
     setIsLoading(false);
-    setSplineError("Failed to load 3D model. Please try again later.");
+    if (error.message.includes("Data read, but end of buffer not reached")) {
+      setSplineError("3D model data is corrupted or incomplete. Displaying fallback view.");
+    } else {
+      setSplineError("Failed to load 3D model. Please try again later.");
+    }
   }, []);
 
   // Optimize Spline performance
@@ -162,29 +173,39 @@ export default function SkillsSection() {
                 </div>
               )}
               {splineError && (
-                <div className="absolute inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm z-10">
-                  <div className="text-center">
-                    <p className="text-red-500">{splineError}</p>
-                    {/* Optional: Add a fallback image */}
-                    <img
-                      src="/fallback-3d-placeholder.png" // Replace with your fallback image path
-                      alt="3D Model Fallback"
-                      className="w-full h-full object-cover rounded-2xl"
-                    />
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-background/80 backdrop-blur-sm z-10 p-8">
+                  <div className="text-center space-y-4">
+                    <div className="w-24 h-24 mx-auto bg-gradient-to-br from-primary/20 to-primary/40 rounded-xl flex items-center justify-center">
+                      <svg className="w-12 h-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                      </svg>
+                    </div>
+                    <h3 className="text-lg font-semibold text-foreground">3D Experience Unavailable</h3>
+                    <p className="text-sm text-muted-foreground max-w-xs">{splineError}</p>
+                    <button 
+                      onClick={() => window.location.reload()} 
+                      className="px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm hover:bg-primary/90 transition-colors"
+                    >
+                      Retry Loading
+                    </button>
                   </div>
                 </div>
               )}
               {!splineError && (
-                <Spline
-                  scene="https://prod.spline.design/JKOeP1UuhRrY9JNj/scene.splinecode"
-                  onLoad={onLoad}
-                  onError={onError}
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    background: "transparent",
-                  }}
-                />
+                <SplineErrorBoundary>
+                  <div className="w-full h-full">
+                    <Spline
+                      scene="https://prod.spline.design/JKOeP1UuhRrY9JNj/scene.splinecode"
+                      onLoad={onLoad}
+                      onError={onError}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        background: "transparent",
+                      }}
+                    />
+                  </div>
+                </SplineErrorBoundary>
               )}
             </div>
           </motion.div>
