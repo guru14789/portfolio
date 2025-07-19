@@ -9,10 +9,10 @@ const HeroSection = () => {
       <div className="container mx-auto max-w-4xl text-center">
         <div className="glass-card rounded-3xl p-12 liquid-gradient">
           <BoxReveal width="100%">
-            <h1 className={cn(
-              "text-5xl md:text-7xl lg:text-8xl font-bold mb-6",
-              "bg-gradient-to-b from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
-            )}>
+            <h1 
+            className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 bg-gradient-to-b from-gray-700 via-gray-800 to-black bg-clip-text text-transparent"
+            data-text-reveal
+          >
               Creative Developer
             </h1>
           </BoxReveal>
