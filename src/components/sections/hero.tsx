@@ -1,141 +1,43 @@
-import { cn } from "@/lib/utils";
-import Link from "next/link";
 import React from "react";
-import { Button } from "../ui/button";
-import { File, Github, Linkedin } from "lucide-react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { usePreloader } from "../preloader";
-import { BlurIn, BoxReveal } from "../reveal-animations";
-import ScrollDownIcon from "../scroll-down-icon";
-import { SiGithub, SiLinkedin } from "react-icons/si";
-import { config } from "@/data/config";
+import { cn } from "@/lib/utils";
+import { BoxReveal } from "../reveal-animations";
 
 const HeroSection = () => {
-  const { isLoading } = usePreloader();
-
   return (
-    <section id="hero" className={cn("relative w-full h-screen")}>
-      <div className="grid md:grid-cols-2">
-        <div
-          className={cn(
-            "h-[calc(100dvh-3rem)] md:h-[calc(100dvh-4rem)] z-[2]",
-            "col-span-1",
-            "flex flex-col justify-start md:justify-center items-center md:items-start",
-            "pt-28 sm:pt-0 sm:pb-32 md:p-24 lg:p-40 xl:p-48"
-          )}
-        >
-          {!isLoading && (
-            <>
-              <div className="">
-                <BlurIn delay={0.7}>
-                  <p
-                    className={cn(
-                      "md:self-start mt-4 font-thin text-md text-slate-500 dark:text-zinc-400 ml-3",
-                      "cursor-default font-display sm:text-xl md:text-xl whitespace-nowrap bg-clip-text "
-                    )}
-                  >
-                    Hi, I am
-                    <br className="md:hidden" />
-                  </p>
-                </BlurIn>
-                <BlurIn delay={1}>
-                  <Tooltip delayDuration={300}>
-                    <TooltipTrigger asChild>
-                      <h1
-                        className={cn(
-                          "font-thin text-6xl text-transparent text-slate-800 ml-1 text-left",
-                          "cursor-default text-edge-outline font-display sm:text-7xl md:text-9xl "
-                        )}
-                      >
-                        {config.author.split(" ")[0]}
-                        <br className="md:block hiidden" />
-                        {config.author.split(" ")[1]}
-                        {/* PLEASE hello??
+    <section className="min-h-screen flex items-center justify-center px-4 relative">
+      <div className="container mx-auto max-w-4xl text-center">
+        <div className="glass-card rounded-3xl p-12 liquid-gradient">
+          <BoxReveal width="100%">
+            <h1 className={cn(
+              "text-5xl md:text-7xl lg:text-8xl font-bold mb-6",
+              "bg-gradient-to-b from-white via-gray-100 to-gray-300 bg-clip-text text-transparent"
+            )}>
+              Creative Developer
+            </h1>
+          </BoxReveal>
 
-                        <br className="md:block hiidden" />
-                        UNMUTE ME 😢😢 */}
-                      </h1>
-                    </TooltipTrigger>
-                    <TooltipContent
-                      side="top"
-                      className="dark:bg-white dark:text-black"
-                    >
-                      theres something waiting for you in devtools
-                    </TooltipContent>
-                  </Tooltip>
-                </BlurIn>
-                {/* <div className="md:block hidden bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0 w-screen h-px animate-fade-right animate-glow" /> */}
-                <BlurIn delay={1.2}>
-                  <p
-                    className={cn(
-                      "md:self-start md:mt-4 font-thin text-md text-slate-500 dark:text-zinc-400 ml-3",
-                      "cursor-default font-display sm:text-xl md:text-xl whitespace-nowrap bg-clip-text "
-                    )}
-                  >
-                    DevOps Enthusiast
-                  </p>
-                </BlurIn>
-              </div>
-              <div className="mt-8 md:ml-2 flex flex-col gap-3">
-                <Link
-                  href={
-                    "https://drive.google.com/file/d/1vjtWfqYGMIMK_rlBnmDEpKco9MiEaQss/view"
-                  }
-                  target="_blank"
-                  className="flex-1"
-                >
-                  <BoxReveal delay={2} width="100%" >
-                    <Button className="flex items-center gap-2 w-full">
-                      <File size={24} />
-                      <p>Resume</p>
-                    </Button>
-                  </BoxReveal>
-                </Link>
-                <div className="md:self-start flex gap-3">
-                  <Tooltip delayDuration={300}>
-                    <TooltipTrigger asChild>
-                      <Link href={"#contact"}>
-                        <Button
-                          variant={"outline"}
-                          className="block w-full overflow-hidden"
-                        >
-                          Hire Me
-                        </Button>
-                      </Link>
-                    </TooltipTrigger>
-                    <TooltipContent side="bottom">
-                      <p>pls 🥹 🙏</p>
-                    </TooltipContent>
-                  </Tooltip>
-                  <Link
-                    href={config.social.github}
-                    target="_blank"
-                  >
-                    <Button variant={"outline"}>
-                      <SiGithub size={24} />
-                    </Button>
-                  </Link>
-                  <Link
-                    href={config.social.linkedin}
-                    target="_blank"
-                  >
-                    <Button variant={"outline"}>
-                      <SiLinkedin size={24} />
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </>
-          )}
+          <BoxReveal width="100%" delay={0.2}>
+            <p className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
+              Crafting immersive digital experiences with cutting-edge technology
+            </p>
+          </BoxReveal>
+
+          <BoxReveal width="100%" delay={0.4}>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="glass hover:glass-dark px-8 py-4 rounded-full border border-white/20 hover:border-white/40 transition-all duration-300 text-white font-medium">
+                View My Work
+              </button>
+              <button className="bg-white/10 hover:bg-white/20 px-8 py-4 rounded-full border border-white/30 hover:border-white/50 transition-all duration-300 text-white font-medium backdrop-blur-sm">
+                Get In Touch
+              </button>
+            </div>
+          </BoxReveal>
         </div>
-        <div className="grid col-span-1"></div>
-      </div>
-      <div className="absolute bottom-10 left-[50%] translate-x-[-50%]">
-        <ScrollDownIcon />
+
+        {/* Floating elements */}
+        <div className="absolute top-20 left-10 w-20 h-20 glass rounded-full opacity-30 animate-pulse"></div>
+        <div className="absolute bottom-32 right-16 w-16 h-16 glass rounded-full opacity-20 animate-pulse delay-1000"></div>
+        <div className="absolute top-40 right-20 w-12 h-12 glass rounded-full opacity-25 animate-pulse delay-500"></div>
       </div>
     </section>
   );

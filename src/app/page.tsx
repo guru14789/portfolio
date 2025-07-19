@@ -1,26 +1,35 @@
+
 "use client";
 
 import React from "react";
 import SmoothScroll from "@/components/smooth-scroll";
 import { cn } from "@/lib/utils";
-import AnimatedBackground from "@/components/animated-background";
 import SkillsSection from "@/components/sections/skills";
 import ProjectsSection from "@/components/sections/projects";
 import ContactSection from "@/components/sections/contact";
 import HeroSection from "@/components/sections/hero";
+import Spline from '@splinetool/react-spline/next';
 
 function MainPage() {
   return (
     <>
       <SmoothScroll>
-        <main className={cn("bg-slate-100 dark:bg-transparent")}>
-          <div className="top-0 z-0 fixed w-full h-screen">
-            <AnimatedBackground />
+        <main className={cn("min-h-screen bg-black relative overflow-hidden")}>
+          {/* Fixed Spline Background */}
+          <div className="fixed top-0 left-0 w-full h-full z-0">
+            <Spline
+              scene="https://prod.spline.design/RC9fNHvpZ3n0J05p/scene.splinecode"
+              className="w-full h-full"
+            />
           </div>
-          <HeroSection />
-          <SkillsSection />
-          <ProjectsSection />
-          <ContactSection />
+          
+          {/* Content with glassmorphism */}
+          <div className="relative z-10">
+            <HeroSection />
+            <SkillsSection />
+            <ProjectsSection />
+            <ContactSection />
+          </div>
         </main>
       </SmoothScroll>
     </>
