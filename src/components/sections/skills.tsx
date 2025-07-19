@@ -65,15 +65,15 @@ export default function SkillsSection() {
   return (
     <motion.section
       id="skills"
-      className="relative min-h-screen w-full bg-black text-white py-20 overflow-hidden"
+      className="relative py-20 bg-background overflow-hidden"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
     >
       {/* Solid black background */}
-      <div className="absolute inset-0 bg-black" />
-      
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-muted/20 to-background" />
+
       {/* Minimal particles background for better performance */}
       <motion.div
         className="absolute inset-0 opacity-5"
@@ -161,7 +161,7 @@ export default function SkillsSection() {
               {Object.values(SKILLS).slice(0, 9).map((skill, index) => {
                 // Simplified progress calculation for better performance
                 const progress = 85 + (index * 3) % 10;
-                
+
                 return (
                   <motion.div
                     key={skill.name}
@@ -205,7 +205,7 @@ export default function SkillsSection() {
                             transition={{ type: "spring", stiffness: 300 }}
                           />
                         </motion.div>
-                        
+
                         {/* Skill Name */}
                         <motion.h3 
                           className="text-xs font-medium text-white text-center leading-tight"
@@ -213,7 +213,7 @@ export default function SkillsSection() {
                         >
                           {skill.label}
                         </motion.h3>
-                        
+
                         {/* Progress Bar */}
                         <div className="w-full bg-zinc-800 rounded-full h-1.5 overflow-hidden">
                           <motion.div
@@ -229,7 +229,7 @@ export default function SkillsSection() {
                             style={{ backgroundColor: skill.color }}
                           />
                         </div>
-                        
+
                         {/* Progress Percentage */}
                         <motion.span
                           initial={{ opacity: 0, y: 10 }}

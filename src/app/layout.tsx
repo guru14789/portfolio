@@ -69,8 +69,8 @@ export default function RootLayout({
       <body>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
-          disableTransitionOnChange
+          defaultTheme="system"
+          enableSystem
         >
           <Particles
             className="fixed inset-0 -z-10 animate-fade-in"
