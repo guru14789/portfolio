@@ -301,7 +301,7 @@ export default function SkillsSection() {
                 <SplineErrorBoundary>
                   <div className="w-full h-full overflow-hidden">
                     <Spline
-                      scene="https://prod.spline.design/Sw6l5z6fQe8bznQC/scene.splinecode"
+                      scene="https://my.spline.design/animatedshapeblend-QzgQPqi7qs3KMSJMNCGqbO4o/"
                       onLoad={onLoad}
                       onError={onError}
                       style={{
