@@ -38,3 +38,6 @@ export function FunnyThemeToggle() {
     </DropdownMenu>
   )
 }
+
+export default FunnyThemeToggle;
+export { FunnyThemeToggle };
