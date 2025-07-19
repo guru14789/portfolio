@@ -1,0 +1,92 @@
+TypeError: _data_constants__WEBPACK_IMPORTED_MODULE_3__.SKILLS.map is not a function. (In '_data_constants__WEBPACK_IMPORTED_MODULE_3__.SKILLS.map((skill, index)=>{
+                                        var _skill_shortDescription;
+                                        return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(framer_motion__WEBPACK_IMPORTED_MODULE_4__.motion.div, {
+                                            initial: {
+                                                opacity: 0,
+                                                scale: 0.8
+                                            },
+                                            whileInView: {
+                                                opacity: 1,
+                                                scale: 1
+                                            },
+                                            transition: {
+                                                duration: 0.5,
+                                                delay: index * 0.1,
+                                                type: "spring",
+                                                stiffness: 100
+                                            },
+                                            viewport: {
+                                                once: true
+                                            },
+                                            whileHover: {
+                                                scale: 1.05,
+                                                y: -5
+                                            },
+                                            className: "group relative",
+                                            children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("div", {
+                                                className: "glass-card rounded-xl p-6 transition-all duration-300 group-hover:shadow-lg border border-border/50",
+                                                children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("div", {
+                                                    className: "flex flex-col items-center space-y-3",
+                                                    children: [
+                                                        skill.icon && /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("div", {
+                                                            className: "w-12 h-12 rounded-lg flex items-center justify-center transition-colors duration-300",
+                                                            style: {
+                                                                backgroundColor: "".concat(skill.color, "20")
+                                                            },
+                                                            children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("img", {
+                                                                src: skill.icon,
+                                                                alt: skill.name,
+                                                                className: "w-8 h-8 object-contain",
+                                                                loading: "lazy"
+                                                            }, void 0, false, {
+                                                                fileName: "/home/runner/workspace/src/components/sections/skills.tsx",
+                                                                lineNumber: 110,
+                                                                columnNumber: 27
+                                                            }, this)
+                                                        }, void 0, false, {
+                                                            fileName: "/home/runner/workspace/src/components/sections/skills.tsx",
+                                                            lineNumber: 106,
+                                                            columnNumber: 25
+                                                        }, this),
+                                                        /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("div", {
+                                                            className: "text-center",
+                                                            children: [
+                                                                /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("h3", {
+                                                                    className: "font-semibold text-foreground group-hover:text-primary transition-colors",
+                                                                    children: skill.name
+                                                                }, void 0, false, {
+                                                                    fileName: "/home/runner/workspace/src/components/sections/skills.tsx",
+                                                                    lineNumber: 119,
+                                                                    columnNumber: 25
+                                                                }, this),
+                                                                /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)("p", {
+                                                                    className: "text-xs text-muted-foreground mt-1",
+                                                                    children: ((_skill_shortDescription = skill.shortDescription) === null || _skill_shortDescription === void 0 ? void 0 : _skill_shortDescription.split("—")[0]) || skill.label
+                                                                }, void 0, false, {
+                                                                    fileName: "/home/runner/workspace/src/components/sections/skills.tsx",
+                                                                    lineNumber: 122,
+                                                                    columnNumber: 25
+                                                                }, this)
+                                                            ]
+                                                        }, void 0, true, {
+                                                            fileName: "/home/runner/workspace/src/components/sections/skills.tsx",
+                                                            lineNumber: 118,
+                                                            columnNumber: 23
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "/home/runner/workspace/src/components/sections/skills.tsx",
+                                                    lineNumber: 104,
+                                                    columnNumber: 21
+                                                }, this)
+                                            }, void 0, false, {
+                                                fileName: "/home/runner/workspace/src/components/sections/skills.tsx",
+                                                lineNumber: 103,
+                                                columnNumber: 19
+                                            }, this)
+                                        }, skill.name, false, {
+                                            fileName: "/home/runner/workspace/src/components/sections/skills.tsx",
+                                            lineNumber: 89,
+                                            columnNumber: 17
+                                        }, this);
+                                    })', '_data_constants__WEBPACK_IMPORTED_MODULE_3__.SKILLS.map' is undefined)
