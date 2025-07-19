@@ -97,18 +97,25 @@ const HeroSection = () => {
 
         {!splineError && (
           <SplineErrorBoundary>
-            <Spline
-              scene="https://prod.spline.design/8RtTrtf3cV5eKm1n/scene.splinecode"
-              onLoad={onLoad}
-              onError={onError}
-              className="w-full h-full"
-              style={{
-                width: "100%",
-                height: "100%",
-                background: "transparent",
-                pointerEvents: "auto",
-              }}
-            />
+            <div className="w-full h-full relative overflow-hidden">
+              <canvas className="absolute inset-0 w-full h-full">
+                <Spline
+                  scene="https://prod.spline.design/8RtTrtf3cV5eKm1n/scene.splinecode"
+                  onLoad={onLoad}
+                  onError={onError}
+                  className="w-full h-full"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    background: "transparent",
+                    pointerEvents: "auto",
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                  }}
+                />
+              </canvas>
+            </div>
           </SplineErrorBoundary>
         )}
       </div>
