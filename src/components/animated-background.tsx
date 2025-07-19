@@ -17,26 +17,26 @@ const AnimatedBackground: React.FC<AnimatedBackgroundProps> = ({
   const onLoad = (splineApp: Application) => {
     splineRef.current = splineApp;
 
-    // Make canvas background fully transparent
+    // Make canvas background transparent
     if (splineApp.canvas) {
       splineApp.canvas.style.background = 'transparent';
       splineApp.canvas.style.backgroundColor = 'transparent';
     }
 
-    // Optional: Auto-rotate the main object
-    const mainObject = splineApp.findObjectByName('Scene') || splineApp.scene?.children[0];
+    // Try finding an object to rotate
+    const mainObject = splineApp.findObjectByName('Scene');
+
     if (mainObject) {
       const startTime = Date.now();
       const animate = () => {
         const elapsed = (Date.now() - startTime) / 1000;
-        mainObject.rotation.y = elapsed * 0.5; // Adjust speed as needed
+        mainObject.rotation.y = elapsed * 0.5;
         requestAnimationFrame(animate);
       };
       animate();
     }
   };
 
-  // Temporary cn function if you're not using tailwind-merge or clsx
   const cn = (...classes: string[]) => classes.filter(Boolean).join(" ");
 
   return (
