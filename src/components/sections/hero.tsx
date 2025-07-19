@@ -2,11 +2,18 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { BoxReveal } from "../reveal-animations";
+import AnimatedBackground from "../animated-background";
 
 const HeroSection = () => {
   return (
     <section className="min-h-screen flex items-center justify-center px-4 relative">
-      <div className="container mx-auto max-w-4xl text-center">
+      {/* Spline Background */}
+      <AnimatedBackground 
+        scene="https://prod.spline.design/8RtTrtf3cV5eKm1n/scene.splinecode"
+        className="absolute inset-0 z-0"
+      />
+      
+      <div className="container mx-auto max-w-4xl text-center relative z-10">
         <div className="glass-card rounded-3xl p-12 liquid-gradient">
           <BoxReveal width="100%">
             <h1 className={cn(
